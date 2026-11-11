@@ -1,0 +1,43 @@
+name: VocLock
+options:
+  bundleIdPrefix: com.voclock
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    ENABLE_BITCODE: "NO"
+targets:
+  VocLock:
+    type: application
+    platform: iOS
+    sources:
+      - path: VocLock
+        excludes:
+          - "Resources/Info.plist"
+    settings:
+      base:
+        INFOPLIST_FILE: VocLock/Resources/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.voclock.app
+        CODE_SIGNING_ALLOWED: "NO"
+        CODE_SIGN_IDENTITY: ""
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  VocLockTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [VocLockTests]
+    dependencies:
+      - target: VocLock
+schemes:
+  VocLock:
+    build:
+      targets:
+        VocLock: all
+        VocLockTests: [test]
+    test:
+      targets:
+        - VocLockTests
